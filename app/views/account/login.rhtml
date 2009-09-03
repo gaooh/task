@@ -1,0 +1,14 @@
+<% content_for(:header) do %>
+	<h1>ログイン</h1>
+<% end %>
+
+<h1>新規作成は<%= link_to 'こちら', :controller => 'account', :action => 'signup', :target => "_self" %>から</h1>
+
+<% form_for :user do |f| -%>
+<ul class="form">
+	<li><%= f.text_field 'login', :onclick => "clickclear(this, 'login')", :onblur => "clickrecall(this,'login')", :value => "login" %></li>
+	<li><%= f.password_field 'password', :onclick => "clickclear(this, 'password')", :onblur => "clickrecall(this,'password')", :value => "password" %></li>
+</ul>
+<%= submit_tag 'Log in', :class => "whiteButton" %>
+
+<% end -%>

@@ -1,0 +1,16 @@
+<% content_for(:header) do %>
+	<h1>メッセージ</h1>
+	<%= link_to '戻る', { :action => :task_request, :task_id => @task.id } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<h1><%=h @friend.login %>に「<%=h @task.title%>」を依頼します。<br/>問題がなければメッセージを入力し依頼ボタンを押してください</h1>
+
+<% form_for 'task_message', :url=>{:action => 'add_task_request'} do |f| -%>
+<ul class="form">
+	<li><%= f.text_area :body, :onclick => "clickclear(this, 'メッセージ')", :onblur => "clickrecall(this,'メッセージ')", :value => "メッセージ" %></li>
+	<%= hidden_field_tag 'task[task_id]', @task.id %>
+	<%= hidden_field_tag 'task[friend_user_id]', @friend.id %>
+</ul>
+<p><%= submit_tag '依頼', :class => "button white" %></p>
+
+<% end -%>

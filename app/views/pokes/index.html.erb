@@ -1,0 +1,18 @@
+<h1>Listing pokes</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% for poke in @pokes %>
+  <tr>
+    <td><%= link_to 'Show', poke %></td>
+    <td><%= link_to 'Edit', edit_poke_path(poke) %></td>
+    <td><%= link_to 'Destroy', poke, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New poke', new_poke_path %>

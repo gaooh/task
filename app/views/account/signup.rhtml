@@ -1,0 +1,15 @@
+<% content_for(:header) do %>
+	<h1>新規作成</h1>
+<% end %>
+
+<% form_for :user do |f| -%>
+<h2><%= error_messages_for :user %></h2>
+<ul class="form">
+	<li><%= f.text_field 'login', :onclick => "clickclear(this, 'login')", :onblur => "clickrecall(this,'login')", :value => "login" %></li>
+	<li><%= f.text_field 'email', :onclick => "clickclear(this, 'email')", :onblur => "clickrecall(this,'email')", :value => "email" %></li>
+	<li>Password: <%= f.password_field 'password' %></li>
+	<li>Confirm: <%= f.password_field 'password_confirmation' %></li>
+</ul>
+<%= submit_tag '登録', :class => "white button" %>
+
+<% end -%>

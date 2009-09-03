@@ -1,0 +1,19 @@
+<% content_for(:header) do %>
+	<h1>設定</h1>
+	<%= link_to 'home', { :action => :index } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<ul class="profile">
+	<li class="picture"><a href="/profile"><!--use this space to define tooltip title when user taps-->Julio Alonso Picture</a></li>
+	<li class="clearfix"><h2><%=h current_user.login %></h2><p><%=h current_user.feel %></p></li>
+</ul>
+
+<% form_for 'user', :url=>{:action => 'update'} do |f| -%>
+<ul class="form">
+	<li><%= f.text_field :email, :onclick => "clickclear(this, 'email')", :onblur => "clickrecall(this,'email')", :value => current_user.email %></li>
+	<li><%= f.text_field :feel, :onclick => "clickclear(this, '今の気分')", :onblur => "clickrecall(this,'今の気分')", :value => "今の気分" %></li>
+</ul>
+<p><%= submit_tag '更新', :class => "button white" %></p>
+
+<% end -%>
+

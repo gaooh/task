@@ -1,0 +1,41 @@
+<% content_for(:header) do %>
+	<h1>仕事詳細</h1>
+	<%= link_to 'home', { :controller => :iphone, :action => :index } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<h1><%=h @task.title %></h1>
+
+<ul class="data">
+	<li><%=h @task.body %></li>
+</ul>
+
+<h1>状態</h1>
+<ul>
+	<li>担当者: <%=h @task.keep_user.login %></li>
+	<li>依頼者: <%=h @task.user.login %></li>
+</ul>
+
+<% unless @task.task_messages.size.zero? %>
+<h1>メッセージ</h1>
+<ul>
+<% @task.task_messages.each do |task_message| %>
+	<li><%=h task_message.body %> by <%=h task_message.user.login %></li>
+<% end %>
+</ul>
+<% end %>
+
+<h1>つっつかれた回数</h1>
+<ul><li><%= @task.all_poke_num %>回</li></ul>
+
+<h1>Menu</h1>
+<ul>
+	<li><%= link_to 'メンバーに依頼する', :controller => :friends, :action => 'task_request', :task_id => @task.id %></li>
+	<li><%= link_to '仕事にメッセージをする', :controller => :task_messages, :action => 'new', :task_id => @task.id %></li>
+	<% if @task.keep_user_id == current_user.id && @task.request? %>
+		<li><%= link_to '依頼された仕事に完了届けを出す', :action => :fixed_confirm, :id => @task.id %></li>
+	<% elsif @task.keep_user_id != current_user.id %>
+		<li><%= link_to '( ´∀｀)σ つっつく？', :controller => :pokes, :action => 'add', :task_id => @task.id %></li>
+	<% elsif @task.user_id == current_user.id && !@task.request? %>
+		<li><%= link_to '仕事を完了する', :action => :close_confirm, :id => @task.id %></li>
+	<% end %>
+</ul>

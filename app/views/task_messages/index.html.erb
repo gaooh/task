@@ -1,0 +1,26 @@
+<h1>Listing task_messages</h1>
+
+<table>
+  <tr>
+    <th>Body</th>
+    <th>Read</th>
+    <th>User</th>
+    <th>Task</th>
+  </tr>
+
+<% for task_message in @task_messages %>
+  <tr>
+    <td><%=h task_message.body %></td>
+    <td><%=h task_message.read %></td>
+    <td><%=h task_message.user_id %></td>
+    <td><%=h task_message.task_id %></td>
+    <td><%= link_to 'Show', task_message %></td>
+    <td><%= link_to 'Edit', edit_task_message_path(task_message) %></td>
+    <td><%= link_to 'Destroy', task_message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New task_message', new_task_message_path %>

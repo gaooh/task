@@ -1,0 +1,28 @@
+<% content_for(:header) do %>
+	<h1>Information</h1>
+	<%= link_to '戻る', { :action => :search } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<ul class="profile">
+	<li class="picture"><a href="/profile"><!--use this space to define tooltip title when user taps-->Julio Alonso Picture</a></li>
+	<li class="clearfix"><h2><%=h @friend.login %></h2><p><%=h @friend.feel %></p></li>
+</ul>
+
+<ul class="field">
+	<li><h3>email</h3> <%=h @friend.email %></li>
+	<li><h3>今ドコ?</h3> <a href="http://www.google.com/maps?f=q&hl=en&geocode=&q=madrid&ie=UTF8&z=10">Map</a></li>
+</ul>
+
+<h1>他のメンバーからの評価</h1>
+<ul>
+	<li>こいつできるやつ！</li>
+	<li>さぼりぐせあるよ.....</li>
+</ul>
+
+<% unless me? %>
+<h1>Menu</h1>
+<ul>
+	<li><%= link_to 'メンバーに招待する', :action => 'new', :friend_user_id => @friend.id %></li>
+	<li>メッセージを送る</li>
+</ul>
+<% end %>

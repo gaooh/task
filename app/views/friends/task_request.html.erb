@@ -1,0 +1,11 @@
+<% content_for(:header) do %>
+	<h1>依頼</h1>
+	<%= link_to '仕事に戻る', { :controller => :tasks, :action => :show, :id => @task.id } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<h1>依頼できるメンバー一覧</h1>
+<ul>
+	<% @friends.each do |friend| %>
+		<li><%= link_to friend.friend_user.login, :action => :add_task_request_confirm, :friend_user_id => friend.friend_user.id, :task_id => @task.id %></a></li>
+	<% end %>
+</ul>

@@ -1,0 +1,15 @@
+<% content_for(:header) do %>
+	<h1>完了</h1>
+	<%= link_to '詳細へ', { :controller => :tasks, :action => :show, :id => @task.id } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<h1>「<%=h @task.title %>」の感想を残して完了します。</h1>
+
+<% form_for 'task_message', :url=>{:action => 'close'} do |f| -%>
+<ul class="form">
+	<li><%= f.text_area :body, :onclick => "clickclear(this, '仕事の感想')", :onblur => "clickrecall(this,'仕事の感想')", :value => "仕事の感想" %></li>
+	<%= f.hidden_field :task_id, :value => @task.id %>
+</ul>
+<p><%= submit_tag '完了', :class => "button white" %></p>
+
+<% end -%>

@@ -1,0 +1,11 @@
+<h1>New poke</h1>
+
+<% form_for(@poke) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', pokes_path %>

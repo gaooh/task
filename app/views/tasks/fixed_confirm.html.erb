@@ -1,0 +1,15 @@
+<% content_for(:header) do %>
+	<h1>仕事完了届け</h1>
+	<%= link_to '詳細へ', { :controller => :tasks, :action => :show, :id => @task.id } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<h1>「<%=h @task.title %>」を完了した事を依頼者に通知します。</h1>
+
+<% form_for 'task_message', :url=>{:action => 'fixed'} do |f| -%>
+<ul class="form">
+	<li><%= f.text_area :body, :onclick => "clickclear(this, 'メッセージ')", :onblur => "clickrecall(this,'メッセージ')", :value => "メッセージ" %></li>
+	<%= f.hidden_field :task_id, :value => @task.id %>
+</ul>
+<p><%= submit_tag '完了', :class => "button white" %></p>
+
+<% end -%>

@@ -1,0 +1,14 @@
+<% content_for(:header) do %>
+	<h1>仕事を作成</h1>
+	<%= link_to '一覧へ戻る', { :action => :index } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<% form_for(@task) do |f| -%>
+<h2><%= f.error_messages %></h2>
+<ul class="form">
+	<li><%= f.text_field :title, :onclick => "clickclear(this, 'タイトル')", :onblur => "clickrecall(this,'タイトル')", :value => "タイトル" %></li>
+	<li><%= f.text_area :body, :onclick => "clickclear(this, '本文')", :onblur => "clickrecall(this,'本文')", :value => "本文" %></li>
+</ul>
+<p><%= submit_tag '作成', :class => "button white" %></p>
+
+<% end -%>

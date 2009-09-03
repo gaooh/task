@@ -1,0 +1,17 @@
+<% content_for(:header) do %>
+	<h1>自分の仕事</h1>
+	<%= link_to 'home', { :controller => :iphone, :action => :index } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<ul>
+	<li class="arrow"><%= link_to '作成する', :controller => 'tasks', :action => 'new' %></li>
+</ul>
+
+<% unless @tasks.size.zero? %>
+<h1>一覧</h1>
+<ul id="tasks">
+	<% @tasks.each do |task| %>
+		<li class="arrow"><%= link_to task.title, :action => :show, :id => task.id %></a></li>
+	<% end %>
+</ul>
+<% end %>

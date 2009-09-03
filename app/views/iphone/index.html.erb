@@ -1,0 +1,18 @@
+<% content_for(:header) do %>
+	<h1>ポータル</h1>
+<% end %>
+
+<h1>Main index</h1>
+
+<ul id="home">
+    <li class="arrow"><%= link_to "自分の仕事(#{@tasks.size})", :controller => :tasks, :action => :index %></li>
+    <li class="arrow"><%= link_to "依頼した仕事(#{@request_tasks.size})", :controller => :tasks, :action => :request_index %></li>
+    <li class="arrow"><%= link_to "完了通知を受けた仕事(#{@fixed_tasks.size})", :controller => :tasks, :action => :fixed_index %></li>
+	<li class="arrow"><%= link_to "完了した仕事(#{@close_tasks.size})", :controller => :tasks, :action => :close_index %></li>
+	<li class="arrow"><%= link_to "メンバー(#{@friends.size})", :controller => :friends, :action => :index %></li>
+    <li class="arrow"><%= link_to '設定', :action => :setting %></li>
+</ul>
+
+<ul>
+	<li><%= link_to 'ログアウト', :controller => :account, :action => :logout %></li>
+</ul>

@@ -1,0 +1,23 @@
+<p>
+  <b>Body:</b>
+  <%=h @task_message.body %>
+</p>
+
+<p>
+  <b>Read:</b>
+  <%=h @task_message.read %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @task_message.user_id %>
+</p>
+
+<p>
+  <b>Task:</b>
+  <%=h @task_message.task_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_message_path(@task_message) %> |
+<%= link_to 'Back', task_messages_path %>

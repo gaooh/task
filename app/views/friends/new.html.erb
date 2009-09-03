@@ -1,0 +1,16 @@
+<% content_for(:header) do %>
+	<h1>メンバー依頼</h1>
+	<%= link_to '戻る', { :controller => :friends, :action => :show, :id => @friend.id } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<h1>以下のユーザをメンバー依頼をしますか？メンバーになると仕事を依頼する事ができます。</h1>
+
+<ul>
+	<li><%=h @friend.login %></li>
+</ul>
+
+<ul class="individual">
+	<li><%= link_to '戻る', :action => :show , :id => @friend.id %></li>
+	<li><%= link_to '依頼する', :action => 'add', :friend_user_id => @friend.id %></li>
+</ul>
+	

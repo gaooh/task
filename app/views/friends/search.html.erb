@@ -1,0 +1,21 @@
+<% content_for(:header) do %>
+	<h1>メンバー検索</h1>
+	<%= link_to '一覧', { :action => :index } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<% form_for :user do |f| -%>
+<ul class="form">
+	<li><%= f.text_field :login, :onclick => "clickclear(this, 'ログイン名')", :onblur => "clickrecall(this,'ログイン名')", :value => "ログイン名" %></li>
+	<li><%= f.text_field :email, :onclick => "clickclear(this, 'email')", :onblur => "clickrecall(this,'email')", :value => "email" %></li>
+</ul>
+<p><%= submit_tag '検索', :class => "button white" %></p>
+<% end -%>
+
+<% unless @friends.nil? %>
+<ul>
+<% @friends.each do |friend| %>
+	<li class="arrow"><%= link_to friend.login, :action => :show, :id => friend.id %></li>
+<% end %>
+</ul>
+<% end %>
+

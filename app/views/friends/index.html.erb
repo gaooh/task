@@ -1,0 +1,18 @@
+<% content_for(:header) do %>
+	<h1>メンバー</h1>
+	<%= link_to 'home', { :controller => :iphone, :action => :index } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<ul>
+	<li class="arrow"><%= link_to '検索する', :action => 'search' %></li>
+</ul>
+
+<% unless @friends.size.zero? %>
+<h1>一覧</h1>
+<ul>
+	<% @friends.each do |friend| %>
+		<li class="arrow"><%= link_to friend.friend_user.login, :action => :show, :id => friend.friend_user.id %></a></li>
+	<% end %>
+</ul>
+<% end %>
+

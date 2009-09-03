@@ -1,0 +1,16 @@
+<% content_for(:header) do %>
+	<h1>メッセージ</h1>
+	<%= link_to '戻る', { :controller => :tasks, :action => :show, :id => @task.id } , { :class=>"navi", :id=> "backButton" } %>
+<% end %>
+
+<h1>「<%=h @task.title%>」にメッセージをします</h1>
+
+<% form_for(@task_message) do |f| %>
+<h1><%= f.error_messages %></h1>
+<ul class="form">
+	<li><%= f.text_area :body, :onclick => "clickclear(this, 'メッセージ')", :onblur => "clickrecall(this,'メッセージ')", :value => "メッセージ" %></li>
+	<%= f.hidden_field :task_id, :value => @task.id %>
+</ul>
+<p><%= submit_tag '送信', :class => "button white" %></p>
+
+<% end -%>
